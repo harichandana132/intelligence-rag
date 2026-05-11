@@ -13,17 +13,17 @@ Multi-turn conversation is supported — the system maintains chat history so fo
 ---
 
 ## Architecture
-
-            User Query
-                │
-                ▼
-┌───────────────────────────────── ┐
+```
+User Query
+    │
+    ▼
+┌─────────────────────────────────┐
 │          HybridRetriever         │
-│  ┌──────────────┐ ┌──────────┐   │
-│  │     FAISS    │ │   BM25   │   │
-│  │ Dense Search │ │ Keyword  │   │
-│  │  (cosine)    │ │  Search  │   │
-│  └──────┬───────┘ └────┬─────┘   │
+│  ┌──────────────┐ ┌──────────┐  │
+│  │     FAISS    │ │   BM25   │  │
+│  │ Dense Search │ │ Keyword  │  │
+│  │  (cosine)    │ │  Search  │  │
+│  └──────┬───────┘ └────┬─────┘  │
 │         └──────┬────────┘        │
 │   Reciprocal Rank Fusion (RRF)   │
 │                │                 │
@@ -40,6 +40,8 @@ Multi-turn conversation is supported — the system maintains chat history so fo
                  │
                  ▼
             Final Answer
+```
+           
 
 ---
 
@@ -56,7 +58,7 @@ Multi-turn conversation is supported — the system maintains chat history so fo
 ---
 
 ## Tech Stack
-+--------------------------------------------------------------------+
+
 |       Component      |                Technology                   |
 |----------------------|---------------------------------------------|
 |          LLM         | Groq API (Llama 3.3 70B Versatile)          |
@@ -69,7 +71,6 @@ Multi-turn conversation is supported — the system maintains chat history so fo
 |       Backend        | FastAPI + Uvicorn                           |
 |       Frontend       | Streamlit                                   |
 |       Language       | Python 3.10+                                |
-+--------------------------------------------------------------------+
 
 ---
 
@@ -114,13 +115,13 @@ streamlit run UI/app.py
 ---
 
 ## API Endpoints
-+------------------------------------------------------------------+
+
 | Method | Endpoint |                Description                   |
 |--------|----------|----------------------------------------------|
 |  POST  |  /upload | Upload a PDF and rebuild the retriever index |
 |  POST  |  /query  | Query the document with optional chat history|
 |  GET   |  /       | Health check                                 |
-+------------------------------------------------------------------+
+
 ---
 
 ## Sample Use Case
